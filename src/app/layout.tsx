@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   metadataBase,
   applicationName: "Antonella Portfolio 2026",
   title: {
-    default: "Antonella Portfolio 2026",
+    default: "Antonella Zacagnino - Portfolio",
     template: "%s | Antonella Portfolio 2026",
   },
   description: "Portfolio profesional de desarrollo Frontend y Full-Stack JavaScript. Interfaces rápidas, escalables y memorables.",

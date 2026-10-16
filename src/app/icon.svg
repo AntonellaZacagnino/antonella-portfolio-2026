@@ -1,4 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="32" fill="#ff5a36"/>
-  <path d="M18 22h11v4H22v4h6v4h-6v8h-4V22Zm18 0h10v4h-6v4h5v4h-5v8h-4V22Z" fill="#0c0c0c"/>
+  <rect width="64" height="64" rx="32" fill="#DEA193"/>
+  <text
+    x="32"
+    y="43"
+    fill="#fff"
+    font-family="Monofett, monospace"
+    font-size="29"
+    text-anchor="middle"
+  >AZ</text>
 </svg>

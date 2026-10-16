@@ -1,0 +1,92 @@
+@use "../../styles/mixins" as mix;
+
+.header {
+  position: fixed;
+  z-index: 100;
+  top: 1rem;
+  left: 50%;
+  display: flex;
+  width: min(calc(100% - 2rem), 86rem);
+  min-height: 4.25rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.65rem 0.8rem 0.65rem 1.15rem;
+  border-radius: 0.8rem;
+  transform: translateX(-50%);
+  @include mix.glass-surface(22px);
+}
+
+.wordmark, .navigation, .actions, .availability, .languageButton { display: flex; align-items: center; }
+.skipLink {
+  position: absolute; top: -5rem; left: 1rem; z-index: 1; padding: 0.7rem 1rem;
+  border-radius: 0.35rem; background: var(--accent); color: var(--accent-contrast); font-size: 0.75rem;
+  text-decoration: none;
+  &:focus { top: 0.75rem; }
+}
+.wordmark { gap: 0.65rem; flex: 0 0 auto; text-decoration: none; }
+.wordmarkMark {
+  display: grid; width: 2rem; height: 2rem; place-items: center; border-radius: 50%;
+  background: var(--accent); color: var(--accent-contrast); font-family: var(--font-display), sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+}
+.wordmarkLabel {
+  font-size: 0.75rem; font-weight: 650; letter-spacing: -0.02em;
+  span { color: var(--text-secondary); font-family: var(--font-syncopate), monospace; font-size: 0.65rem; font-weight: 400; }
+}
+.navigation {
+  gap: clamp(0.8rem, 2.1vw, 2rem); margin-inline: auto;
+  a {
+    color: var(--text-secondary); font-size: 0.75rem; text-decoration: none; transition: color 180ms ease;
+    &:hover { color: var(--text-primary); }
+    @include mix.focus-visible;
+  }
+}
+.actions { gap: 0.65rem; flex: 0 0 auto; }
+.availability { gap: 0.45rem; margin-right: 0.4rem; color: var(--text-secondary); font-size: 0.66rem; white-space: nowrap; }
+.availabilityDot {
+  position: relative; width: 0.42rem; height: 0.42rem; border-radius: 50%; background: var(--success);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--success) 55%, transparent); animation: pulse 2.4s ease-out infinite;
+}
+.languageButton, .iconButton {
+  justify-content: center; border: 1px solid var(--border-subtle); border-radius: 0.45rem;
+  background: transparent; color: var(--text-secondary); cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+  &:hover {
+    border-color: color-mix(in srgb, var(--text-primary) 25%, transparent);
+    background: color-mix(in srgb, var(--text-primary) 5%, transparent); color: var(--text-primary);
+  }
+  @include mix.focus-visible;
+}
+.languageButton { gap: 0.3rem; min-height: 2.25rem; padding: 0 0.55rem; font-family: var(--font-syncopate), monospace; font-size: 0.62rem; }
+.languageDivider { color: var(--text-secondary); opacity: 0.5; }
+.languageActive { color: var(--text-primary); }
+.iconButton { display: grid; width: 2.25rem; height: 2.25rem; place-items: center; }
+.menuButton { display: none; }
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--success) 50%, transparent); }
+  70% { box-shadow: 0 0 0 0.4rem transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@media (max-width: 56rem) {
+  .header { gap: 0.75rem; }
+  .availability { display: none; }
+}
+@media (max-width: 42rem) {
+  .header { top: 0.65rem; width: calc(100% - 1.25rem); }
+  .navigation {
+    position: absolute; top: calc(100% + 0.5rem); right: 0; left: 0; display: none; align-items: stretch;
+    flex-direction: column; gap: 0; padding: 0.4rem; border: 1px solid var(--border-subtle);
+    border-radius: 0.75rem; background: var(--surface-primary); box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+    a { padding: 0.85rem 0.75rem; }
+  }
+  .navigationOpen { display: flex; }
+  .menuButton { display: grid; }
+  .actions { gap: 0.45rem; }
+}
+@include mix.reduced-motion {
+  .availabilityDot { animation: none; }
+  .navigation a, .languageButton, .iconButton { transition: none; }
+}

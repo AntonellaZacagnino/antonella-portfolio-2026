@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "variables" as *;
+
+@mixin respond-to($breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+
+  @if $value == null {
+    @error "Breakpoint `#{$breakpoint}` is not defined.";
+  }
+
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+@mixin glass-surface($blur: 18px) {
+  border: 1px solid var(--border-subtle);
+  background: color-mix(in srgb, var(--surface-primary) 82%, transparent);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+}
+
+@mixin bento-grid($min-column: 15rem, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, $min-column), 1fr));
+  gap: $gap;
+}
+
+@mixin fluid-type($min, $preferred, $max) {
+  font-size: clamp($min, $preferred, $max);
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

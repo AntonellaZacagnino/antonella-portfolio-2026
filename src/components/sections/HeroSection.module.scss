@@ -1,0 +1,78 @@
+@use "../../styles/mixins" as mix;
+
+.hero {
+  position: relative; display: flex; min-height: min(58rem, 100svh); align-items: center; overflow: hidden;
+  padding: 9rem clamp(1.25rem, 8vw, 8rem) 7rem; border-bottom: 1px solid var(--border-subtle);
+}
+.heroGrid {
+  position: absolute; inset: 0 0 0 48%;
+  background-image: linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+  background-size: 5.5rem 5.5rem; mask-image: linear-gradient(90deg, transparent, #000 40%, transparent 100%);
+  opacity: 0.45; pointer-events: none;
+}
+.heroContent {
+  position: relative; z-index: 1; width: min(100%, 78rem); margin: 0 auto;
+  h1 {
+    max-width: 11ch; margin: 1.5rem 0 2.25rem; font-family: var(--font-display), sans-serif;
+    @include mix.fluid-type(3.5rem, 10vw, 9.8rem);
+    font-weight: 600; line-height: 0.91; letter-spacing: -0.085em;
+    span { color: var(--accent); font-weight: 500; font-style: italic; font-family: var(--font-monofett), cursive; }
+  }
+}
+.eyebrow {
+  display: flex; align-items: center; gap: 0.65rem; margin: 0; color: var(--text-secondary);
+  font-family: var(--font-syncopate), monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.eyebrowMarker { width: 1.6rem; height: 1px; flex: 0 0 auto; background: var(--accent); }
+.eyebrowName { color: var(--text-primary); }
+.heroFooter { display: flex; align-items: flex-end; justify-content: space-between; gap: 2.5rem; }
+.description { max-width: 33rem; margin: 0; color: var(--text-secondary); font-size: clamp(0.95rem, 1.4vw, 1.1rem); line-height: 1.8; }
+.actions { display: flex; align-items: center; gap: 1.35rem; flex: 0 0 auto; }
+.primaryAction, .secondaryAction {
+  display: inline-flex; min-height: 3.25rem; align-items: center; justify-content: center; gap: 0.75rem;
+  font-size: 0.78rem; text-decoration: none; transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+  @include mix.focus-visible;
+}
+.primaryAction {
+  padding: 0 1.1rem; border: 1px solid var(--accent); border-radius: 0.35rem;
+  background: var(--accent); color: var(--accent-contrast); font-weight: 650;
+  &:hover { transform: translateY(-2px); }
+}
+.secondaryAction { color: var(--text-secondary); &:hover { color: var(--text-primary); } }
+.cvAction {
+  display: inline-flex; min-height: 3.25rem; align-items: center; justify-content: center; gap: 0.65rem;
+  padding: 0 1rem; border: 1px solid var(--accent); border-radius: 0.35rem;
+  background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent);
+  font-size: 0.78rem; font-weight: 700; text-decoration: none;
+  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  &:hover {
+    transform: translateY(-2px); background: var(--accent); color: var(--accent-contrast);
+    box-shadow: 0 0.35rem 1.2rem color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  @include mix.focus-visible;
+}
+.socialAction {
+  display: inline-grid; width: 2.75rem; height: 2.75rem; place-items: center;
+  border: 1px solid var(--border-subtle); border-radius: 50%; color: var(--text-secondary);
+  transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+  &:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+  @include mix.focus-visible;
+}
+.scrollCue {
+  position: absolute; bottom: 2rem; left: clamp(1.25rem, 8vw, 8rem); display: flex; align-items: center; gap: 0.7rem;
+  color: var(--text-secondary); font-family: var(--font-syncopate), monospace; font-size: 0.6rem; letter-spacing: 0.08em;
+  text-decoration: none; text-transform: uppercase;
+  &:hover { color: var(--text-primary); }
+  @include mix.focus-visible;
+}
+.heroIndex { position: absolute; right: clamp(1.25rem, 8vw, 8rem); bottom: 2rem; color: var(--text-secondary); font-family: var(--font-syncopate), monospace; font-size: 0.62rem; }
+
+@include mix.respond-to(lg) { .heroContent h1 { font-size: clamp(6rem, 10vw, 9.8rem); } }
+@media (max-width: 48rem) {
+  .hero { min-height: 44rem; padding-top: 8.5rem; }
+  .heroContent h1 { font-size: clamp(3.5rem, 13vw, 6rem); }
+  .heroFooter { align-items: flex-start; flex-direction: column; gap: 1.5rem; }
+  .description { max-width: 35rem; }
+  .actions { flex-wrap: wrap; }
+}
+@include mix.reduced-motion { .primaryAction, .secondaryAction, .cvAction, .socialAction { transition: none; } }

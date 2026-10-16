@@ -1,0 +1,54 @@
+@use "../../styles/mixins" as mix;
+
+.section { padding: clamp(5rem, 11vw, 10rem) clamp(1.25rem, 8vw, 8rem); border-bottom: 1px solid var(--border-subtle); }
+.sectionHeader, .bentoGrid { width: min(100%, 78rem); margin-inline: auto; }
+.sectionHeader {
+  margin-bottom: 2.75rem;
+  h2 {
+    max-width: 18ch; margin: 0.85rem 0 0; font-family: var(--font-display), sans-serif;
+    font-size: clamp(2.5rem, 5.5vw, 5rem); font-weight: 500; line-height: 1; letter-spacing: -0.065em;
+  }
+}
+.eyebrow { margin: 0; color: var(--accent); font-family: var(--font-syncopate), monospace; font-size: 0.66rem; letter-spacing: 0.11em; text-transform: uppercase; }
+.bentoGrid { display: grid; grid-template-columns: 1.15fr 0.85fr; grid-template-rows: repeat(2, minmax(14rem, auto)); gap: 0.9rem; }
+.card {
+  position: relative; display: flex; min-width: 0; flex-direction: column; padding: clamp(1.35rem, 3vw, 2.2rem);
+  overflow: hidden; border: 1px solid var(--border-subtle); border-radius: 0.7rem; background: var(--surface-primary);
+  transition: border-color 200ms ease, transform 200ms ease;
+  &:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 35%, var(--border-subtle)); }
+  h3 { margin: auto 0 0.8rem; font-family: var(--font-display), sans-serif; font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 500; letter-spacing: -0.045em; }
+  p { max-width: 52ch; margin: 0; color: var(--text-secondary); font-size: 0.84rem; line-height: 1.8; }
+}
+.profileCard { grid-row: span 2; p { white-space: pre-line; } }
+.profileIntro { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 1.25rem; margin: auto 0 1.25rem; h3 { margin: 0; } }
+.portraitFrame {
+  position: relative; width: 9rem; height: 10.5rem; flex: 0 0 auto; overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 48%, var(--border-subtle));
+  border-radius: 48% 48% 42% 42%; background: var(--surface-secondary); box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.18);
+  transform: rotate(3deg);
+}
+.portrait { object-fit: cover; object-position: center 30%; }
+.locationCard { min-height: 15rem; }
+.workflowCard { min-height: 17rem; h3 { margin-top: 1.5rem; } }
+.cardTopline, .cardFoot { display: flex; align-items: center; justify-content: space-between; }
+.cardTopline {
+  color: var(--text-secondary); font-family: var(--font-syncopate), monospace; font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase;
+  svg { color: var(--accent); }
+}
+.cardFoot { gap: 1rem; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle); color: var(--text-secondary); font-size: 0.72rem; svg { flex: 0 0 auto; color: var(--accent); } }
+.clockPanel { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 0.25rem 1rem; margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid var(--border-subtle); }
+.clockLabel { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--text-secondary); font-family: var(--font-syncopate), monospace; font-size: 0.55rem; letter-spacing: 0.08em; svg { color: var(--accent); } }
+.clockTime { grid-column: 2; grid-row: 1 / span 2; color: var(--text-primary); font-family: var(--font-syncopate), monospace; font-size: 1.9rem; font-variant-numeric: tabular-nums; letter-spacing: -0.08em; }
+.timezone { color: var(--text-primary); font-size: 0.67rem; }
+.practiceList {
+  display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1.25rem 0 0; padding: 0; list-style: none;
+  li { padding: 0.38rem 0.55rem; border: 1px solid var(--border-subtle); border-radius: 999px; color: var(--text-secondary); font-family: var(--font-syncopate), monospace; font-size: 0.60rem; }
+}
+@media (max-width: 48rem) {
+  .bentoGrid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .profileCard { grid-row: auto; min-height: 19rem; }
+  .profileIntro { gap: 0.75rem; }
+  .portraitFrame { width: 6.25rem; height: 7.5rem; }
+  .card { min-height: 16rem; }
+}
+@include mix.reduced-motion { .card { transition: none; } }

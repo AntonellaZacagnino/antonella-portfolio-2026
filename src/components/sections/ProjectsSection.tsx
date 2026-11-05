@@ -14,7 +14,7 @@ function ProjectPreview({ project }: { project: Project }) {
       <div className={`${styles.preview} ${styles.imagePreview}`} aria-hidden="true">
         <Image
           className={`${styles.previewImage} ${project.previewImageFit === "contain" ? styles.previewImageContain : ""}`}
-          src={project.previewImage}
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${project.previewImage}`}
           alt=""
           fill
           sizes="(max-width: 54rem) calc(100vw - 2.5rem), 43vw"

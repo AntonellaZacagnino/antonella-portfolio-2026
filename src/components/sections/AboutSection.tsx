@@ -39,7 +39,7 @@ export default function AboutSection() {
             <div className={styles.portraitFrame}>
               <Image
                 className={styles.portrait}
-                src="/images/fotocv.jpg"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/images/fotocv.jpg`}
                 alt="Antonella Zacagnino"
                 fill
                 sizes="(max-width: 48rem) 6.5rem, 9rem"

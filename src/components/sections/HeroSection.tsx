@@ -23,7 +23,7 @@ export default function HeroSection() {
           <p className={styles.description}>{copy.hero.description}</p>
           <div className={styles.actions}>
             <a className={styles.primaryAction} href="#about">{copy.hero.primaryAction}<ArrowRight size={16} aria-hidden="true" /></a>
-            <a className={styles.cvAction} href="/CV%20Antonella%20Zacagnino.pdf" download="CV-Antonella-Zacagnino.pdf">
+            <a className={styles.cvAction} href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/CV%20Antonella%20Zacagnino.pdf`} download="CV-Antonella-Zacagnino.pdf">
               {copy.hero.cvDownload}<Download size={15} aria-hidden="true" />
             </a>
             <a className={styles.secondaryAction} href="#stack">{copy.hero.secondaryAction}</a>

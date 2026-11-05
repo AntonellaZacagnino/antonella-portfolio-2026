@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: process.cwd(),
+  output: "export",
+  basePath: process.env.GITHUB_PAGES === "true" ? "/antonella-portfolio-2026" : "",
+  images: { unoptimized: true },
 };
 
 export default nextConfig;
